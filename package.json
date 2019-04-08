@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
+    "prettier": "^1.16.4",
     "twilio-run": "https://github.com/the-red/twilio-run#merge-dotenv-to-processenv"
   }
 }
