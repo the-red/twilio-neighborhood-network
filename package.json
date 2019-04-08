@@ -1,0 +1,15 @@
+{
+  "name": "twilio-neighborhood-network",
+  "version": "0.1.0",
+  "description": "Twilio ご近所電話ネットワーク",
+  "main": "index.js",
+  "scripts": {
+    "start": "twilio-run --env"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "twilio-run": "https://github.com/the-red/twilio-run#merge-dotenv-to-processenv"
+  }
+}
