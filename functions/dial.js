@@ -1,7 +1,4 @@
 exports.handler = function(context, event, callback) {
-  const opt = {
-    language: 'ja-jp',
-  };
   const twiml = new Twilio.twiml.VoiceResponse();
   const client = context.getTwilioClient();
   const { Called, Caller, RecordingUrl } = event;

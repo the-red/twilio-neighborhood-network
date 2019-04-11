@@ -1,6 +1,7 @@
 exports.handler = function(context, event, callback) {
   const opt = {
     language: 'ja-JP',
+    voice: 'Polly.Mizuki',
   };
   const twiml = new Twilio.twiml.VoiceResponse();
 
