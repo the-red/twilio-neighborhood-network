@@ -13,6 +13,8 @@ exports.handler = function(context, event, callback) {
     message += `こちらは、${organization}です。`;
   }
   if (!recorders.includes(event.From)) {
+    // TODO: 登録されてない番号の場合は<Reject>した方が良さそう
+
     message += `この電話には、特定の番号からの着信のみ受け付けています。`;
     twiml.say(message, opt);
     twiml.hangup();
