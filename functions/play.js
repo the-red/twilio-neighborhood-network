@@ -8,7 +8,9 @@ exports.handler = function(context, event, callback) {
 
   const organization = process.env.ORGANIZATION || '電話連絡網';
   twiml.say(`こんにちは。${organization}からのお知らせです。`, opt);
+  twiml.pause();
   twiml.play(RecordingUrl);
+  twiml.pause();
 
   let finalMessage = `メッセージは以上です。`;
   if (process.env.IS_RECORDER) {
@@ -16,7 +18,9 @@ exports.handler = function(context, event, callback) {
   メッセージを録音し、関係者に録音内容が転送されます。
   緊急情報の共有に活用してください。`;
   }
+
   twiml.say(finalMessage, opt);
+  twiml.pause();
 
   callback(null, twiml);
 };
