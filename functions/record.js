@@ -9,7 +9,7 @@ exports.handler = function(context, event, callback) {
   const recorders = require(Runtime.getAssets()['recorders.js'].path);
   const listeners = require(Runtime.getAssets()['listeners.js'].path);
 
-  if (listeners.includes(event.From)) {
+  if ([...recorders, ...listeners].includes(event.From)) {
     const organization = process.env.ORGANIZATION || '電話連絡網';
     message += `こちらは、${organization}です。`;
   }
