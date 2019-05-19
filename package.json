@@ -7,11 +7,18 @@
     "start": "npm run tunnel & npm run twilio",
     "s": "npm start",
     "twilio": "twilio-run --env --port=${TWILIO_PORT:-3000}",
-    "tunnel": "ssh -R ${SERVEO_SUBDOMAIN}${SERVEO_SUBDOMAIN+:}80:localhost:${TWILIO_PORT:-3000} serveo.net"
+    "tunnel": "ssh -R ${SERVEO_SUBDOMAIN}${SERVEO_SUBDOMAIN+:}80:localhost:${TWILIO_PORT:-3000} serveo.net",
+    "log": "node tools/log"
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "csv-parse": "^4.4.1",
+    "date-fns": "^1.30.1",
+    "date-fns-timezone": "^0.1.4",
+    "dotenv": "^8.0.0",
+    "libphonenumber-js": "^1.7.18"
+  },
   "devDependencies": {
     "prettier": "^1.16.4",
     "twilio-run": "https://github.com/the-red/twilio-run#merge-dotenv-into-processenv"
