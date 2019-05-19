@@ -7,7 +7,7 @@
     "start": "npm run tunnel & npm run twilio",
     "s": "npm start",
     "twilio": "twilio-run --env --port=${TWILIO_PORT:-3000}",
-    "tunnel": "ssh -R ${SERVEO_SUBDOMAIN}${SERVEO_SUBDOMAIN+:}80:localhost:${TWILIO_PORT:-3000} serveo.net",
+    "tunnel": "ssh -R ${SERVEO_SUBDOMAIN}${SERVEO_SUBDOMAIN:+:}80:localhost:${TWILIO_PORT:-3000} serveo.net",
     "log": "node tools/log"
   },
   "author": "",
