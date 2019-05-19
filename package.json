@@ -4,7 +4,8 @@
   "description": "Twilio ご近所電話ネットワーク",
   "main": "index.js",
   "scripts": {
-    "start": "twilio-run --env"
+    "start": "twilio-run --env",
+    "tunnel": "ssh -R ${SERVEO_SUBDOMAIN}${SERVEO_SUBDOMAIN+:}80:localhost:3000 serveo.net"
   },
   "author": "",
   "license": "MIT",
