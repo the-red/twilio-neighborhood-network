@@ -5,3 +5,4 @@ assets/recorders.js
 assets/listeners.js
 assets-production/
 tools/*.csv
+tools/*.xlsx
