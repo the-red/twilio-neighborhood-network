@@ -13,26 +13,54 @@ const formatTel = e164Number => formatIncompletePhoneNumber(e164Number.replace('
 const addresses = require(`../assets-production/${process.env.ORGANIZATION}/addresses`);
 const callRecordingLog = __dirname + '/call-recording-log.csv';
 const callLog = __dirname + '/call-log.csv';
+const outputFile = __dirname + '/twilio-log.csv';
 
-const recordingMap = csv(callRecordingLog, { bom: true }).reduce((map, log) => {
+const japaneseStatus = (status, direction, recording) => {
+  if (status === 'completed' && direction === 'Inbound') {
+    if (recording) {
+      return '録音済';
+    } else {
+      return '録音せず切断';
+    }
+  }
+  switch (status) {
+    case 'completed':
+      return '再生済';
+    case 'no-answer':
+    case 'failed':
+      return '応答なし';
+    case 'busy':
+      return '通話中';
+    default:
+      return status;
+  }
+};
+
+const recordingMap = csv.input(callRecordingLog, { bom: true }).reduce((map, log) => {
   log.Url = `https://api.twilio.com/2010-04-01/Accounts/${log.AccountSid}/Recordings/${log.Sid}.mp3`;
   map[log.CallSid] = log;
   return map;
 }, {});
 
-const twilioLogs = csv(callLog).map(log => {
-  log.開始時間 = formatDateTime(log.StartTime);
-  log.終了時間 = formatDateTime(log.EndTime);
-  log.発信元番号 = formatTel(log.From);
-  log.宛先番号 = formatTel(log.To);
-  log.発信元 = addresses[log.From];
-  log.宛先 = addresses[log.To];
-  log.詳細URL = `https://jp.twilio.com/console/voice/calls/logs/${log.Sid}`;
-  if (recordingMap[log.Sid]) {
-    log.録音URL = recordingMap[log.Sid].Url;
-    log.録音秒数 = recordingMap[log.Sid].Duration;
-  }
-  return log;
+const twilioLogs = csv.input(callLog).map(log => {
+  const recording = recordingMap[log.Sid];
+  const convertedData = {
+    タイプ: log.Direction === 'Inbound' ? '録音' : '再生',
+    開始時間: formatDateTime(log.StartTime),
+    終了時間: formatDateTime(log.EndTime),
+    発信元: addresses[log.From],
+    発信元番号: formatTel(log.From),
+    宛先: addresses[log.To],
+    宛先番号: formatTel(log.To),
+    ステータス: japaneseStatus(log.Status, log.Direction, recording),
+    料金: log.Price,
+    通話秒数: log.Duration,
+    録音秒数: recording && recording.Duration,
+    録音URL: recording && recording.Url,
+    詳細URL: `https://jp.twilio.com/console/voice/calls/logs/${log.Sid}`,
+  };
+  return { ...convertedData, ...log };
 });
-const firstLog = twilioLogs.find(_ => _.発信元 !== process.env.ORGANIZATION);
-console.log(firstLog);
+
+csv.output(outputFile, twilioLogs);
+console.log(`output: ${outputFile}`);
