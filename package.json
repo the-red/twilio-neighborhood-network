@@ -22,6 +22,6 @@
   },
   "devDependencies": {
     "prettier": "^1.16.4",
-    "twilio-run": "https://github.com/the-red/twilio-run#merge-dotenv-into-processenv"
+    "twilio-run": "^1.0.1"
   }
 }

@@ -10,7 +10,7 @@ exports.handler = function(context, event, callback) {
   const listeners = require(Runtime.getAssets()['listeners.js'].path);
 
   if ([...recorders, ...listeners].includes(event.From)) {
-    const organization = process.env.ORGANIZATION || '電話連絡網';
+    const organization = context.ORGANIZATION || '電話連絡網';
     message += `こちらは、${organization}です。`;
   }
   if (!recorders.includes(event.From)) {

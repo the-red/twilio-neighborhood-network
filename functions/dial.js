@@ -10,7 +10,7 @@ exports.handler = function(context, event, callback) {
   listeners.forEach(toNumber => {
     client.calls.create(
       {
-        url: `https://${process.env.DOMAIN}/play?RecordingUrl=${RecordingUrl}`,
+        url: `https://${context.DOMAIN}/play?RecordingUrl=${RecordingUrl}`,
         method: 'GET',
         to: toNumber,
         from: Called,
