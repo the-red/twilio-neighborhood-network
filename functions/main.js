@@ -23,6 +23,7 @@ exports.handler = function(context, event, callback) {
     method: 'POST',
     numDigits: 1,
   });
+  // TODO: 録音許可する人を限定
   gather.say(`こちらは、${organization}です。再生するには1を、録音するには3を押してください。`, opt);
   twiml.say('入力が確認できませんでした。', opt);
 
