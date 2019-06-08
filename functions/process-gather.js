@@ -7,16 +7,18 @@ exports.handler = function(context, event, callback) {
 
   switch (event.Digits) {
     case '1':
-      // TODO: 再生機能を作る
-      twiml.say('再生機能の実装まで、今しばらくお待ちください。', opt);
+      twiml.redirect('/replay');
+      callback(null, twiml);
       break;
+
     case '3':
       twiml.redirect('/record');
+      callback(null, twiml);
       break;
+
     default:
       twiml.say('正しい番号が入力されませんでした。', opt);
       twiml.redirect('/main');
+      callback(null, twiml);
   }
-
-  callback(null, twiml);
 };
