@@ -4,10 +4,13 @@ exports.handler = function(context, event, callback) {
     voice: 'Polly.Mizuki',
   };
   const twiml = new Twilio.twiml.VoiceResponse();
-  const { RecordingUrl } = event;
+  const { Recorder, RecordingUrl } = event;
 
   const organization = context.ORGANIZATION || '電話連絡網';
-  twiml.say(`こんにちは。${organization}からのお知らせです。`, opt);
+  const recorders = require(Runtime.getAssets()['recorders.js'].path);
+  const name = recorders[Recorder];
+
+  twiml.say(`こんにちは。${organization}、${name}さんからのお知らせです。`, opt);
   twiml.pause();
   twiml.play(RecordingUrl);
   twiml.pause();

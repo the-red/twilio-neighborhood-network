@@ -7,10 +7,11 @@ exports.handler = function(context, event, callback) {
 
   const recorders = require(Runtime.getAssets()['recorders.js'].path);
   const listeners = require(Runtime.getAssets()['listeners.js'].path);
+  const allUserNumbers = [...Object.keys(recorders), ...Object.keys(listeners)];
 
   console.log(event);
 
-  if (![...recorders, ...listeners].includes(event.From)) {
+  if (!allUserNumbers.includes(event.From)) {
     twiml.reject();
     console.log('rejected!', event.From);
     callback(null, twiml);

@@ -3,14 +3,13 @@ exports.handler = function(context, event, callback) {
   const client = context.getTwilioClient();
   const { Caller, RecordingUrl } = event;
 
-  // const listeners = [Caller]; // デバッグ用
-  const file = Runtime.getAssets()['listeners.js'].path;
-  const listeners = require(file);
+  const listeners = require(Runtime.getAssets()['listeners.js'].path);
+  const Recorder = encodeURIComponent(Caller);
 
-  listeners.forEach(toNumber => {
+  Object.keys(listeners).forEach(toNumber => {
     client.calls.create(
       {
-        url: `https://${context.DOMAIN}/play?RecordingUrl=${RecordingUrl}`,
+        url: `https://${context.DOMAIN}/play?Recorder=${Recorder}&RecordingUrl=${RecordingUrl}`,
         method: 'GET',
         to: toNumber,
         from: context.CALLER_ID,
