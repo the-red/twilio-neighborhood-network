@@ -21,6 +21,7 @@ exports.handler = function(context, event, callback) {
       .replace('PM', '午後');
 
     twiml.say(`最新の録音メッセージを再生します。${dateForSay}`, opt);
+    twiml.pause();
     twiml.play(RecordingUrl);
     twiml.pause();
     twiml.say(`メッセージは以上です。`, opt);
