@@ -7,6 +7,7 @@ exports.handler = function(context, event, callback) {
   const client = context.getTwilioClient();
 
   (async () => {
+    // TODO: 最新3件くらいは聞けるようにしたい
     const recordings = await client.recordings.list({ limit: 1 });
     const recording = recordings[0];
     const RecordingUrl = `https://api.twilio.com/2010-04-01/Accounts/${context.ACCOUNT_SID}/Recordings/${

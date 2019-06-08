@@ -29,5 +29,4 @@ exports.handler = function(context, event, callback) {
       }
     );
   });
-  // TODO: 不在時の再ダイヤルオプション
 };
