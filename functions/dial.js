@@ -16,6 +16,11 @@ exports.handler = function(context, event, callback) {
         from: Called,
       },
       (err, result) => {
+        if (err) {
+          console.log(err);
+          callback(err);
+          return;
+        }
         console.log('Created calls using callback');
         console.log(result.sid);
 
