@@ -10,12 +10,11 @@ exports.handler = function(context, event, callback) {
 	電話を切ると、関係者${listeners.length}人に、録音内容が転送されます。`;
   twiml.say(message, opt);
 
-  const Called = encodeURIComponent(event.Called);
   const Caller = encodeURIComponent(event.From);
   twiml.record({
     maxLength: 60,
     action: `/hangup`,
-    recordingStatusCallback: `/dial?Called=${Called}&Caller=${Caller}`,
+    recordingStatusCallback: `/dial?Caller=${Caller}`,
     recordingStatusCallbackMethod: 'GET',
   });
 

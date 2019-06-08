@@ -1,7 +1,7 @@
 exports.handler = function(context, event, callback) {
   const twiml = new Twilio.twiml.VoiceResponse();
   const client = context.getTwilioClient();
-  const { Called, Caller, RecordingUrl } = event;
+  const { Caller, RecordingUrl } = event;
 
   // const listeners = [Caller]; // デバッグ用
   const file = Runtime.getAssets()['listeners.js'].path;
@@ -13,7 +13,7 @@ exports.handler = function(context, event, callback) {
         url: `https://${context.DOMAIN}/play?RecordingUrl=${RecordingUrl}`,
         method: 'GET',
         to: toNumber,
-        from: Called,
+        from: context.CALLER_ID,
       },
       (err, result) => {
         if (err) {
