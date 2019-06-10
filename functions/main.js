@@ -19,7 +19,7 @@ exports.handler = function(context, event, callback) {
 
   const organization = context.ORGANIZATION || '電話連絡網';
   const gather = twiml.gather({
-    action: '/process-gather',
+    action: '/router',
     method: 'POST',
     numDigits: 1,
   });
