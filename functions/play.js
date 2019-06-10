@@ -10,7 +10,7 @@ exports.handler = function(context, event, callback) {
   const recorders = require(Runtime.getAssets()['recorders.js'].path);
   const name = recorders[Recorder];
 
-  twiml.say(`こんにちは。${organization}、${name}さんからのお知らせです。`, opt);
+  twiml.say(`こんにちは。${organization}、${name}からのお知らせです。`, opt);
   twiml.pause();
   twiml.play(RecordingUrl);
   twiml.pause();
