@@ -17,6 +17,7 @@ exports.handler = function(context, event, callback) {
     const { format } = require('date-fns');
     const { convertToTimeZone } = require('date-fns-timezone');
     const date = convertToTimeZone(recording.dateUpdated, { timeZone: 'Asia/Tokyo' });
+    // TODO: date-fnsの日本語化機能を使ってもう少しスマートに書く
     const dateForSay = format(date, 'M月D日 A h時m分')
       .replace('AM', '午前')
       .replace('PM', '午後');
