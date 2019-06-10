@@ -20,11 +20,9 @@ exports.handler = function(context, event, callback) {
 
     const { format } = require('date-fns');
     const { convertToTimeZone } = require('date-fns-timezone');
+    const ja = require('date-fns/locale/ja');
     const date = convertToTimeZone(recording.dateUpdated, { timeZone: 'Asia/Tokyo' });
-    // TODO: date-fnsの日本語化機能を使ってもう少しスマートに書く
-    const dateForSay = format(date, 'M月D日 A h時m分')
-      .replace('AM', '午前')
-      .replace('PM', '午後');
+    const dateForSay = format(date, 'MMMDo A h時m分', { locale: ja });
 
     twiml.say(`最新の録音、${dateForSay}、${name}からのお知らせを再生します。`, opt);
     twiml.pause();
