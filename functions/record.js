@@ -14,7 +14,7 @@ exports.handler = function(context, event, callback) {
 
   const Caller = encodeURIComponent(event.From);
   twiml.record({
-    maxLength: 60,
+    maxLength: context.MAX_RECORDING_LENGTH || 50,
     action: `/hangup`,
     recordingStatusCallback: `/dial?Caller=${Caller}`,
     recordingStatusCallbackMethod: 'GET',
