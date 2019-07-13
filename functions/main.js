@@ -30,6 +30,7 @@ exports.handler = function(context, event, callback) {
     numDigits: 1,
   });
   let message = `こちらは、${organization}です。ご希望の番号を押してください。
+  案内の途中でも操作できます。
   聞き逃したメッセージを再生するには、1番を`;
   if (recorders[event.From]) {
     message += `。新しいメッセージを録音するには3番を`;
