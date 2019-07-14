@@ -20,7 +20,7 @@ const japaneseStatus = (status, direction, recording) => {
     if (recording) {
       return '録音済';
     } else {
-      return '録音せず切断';
+      return '録音なし';
     }
   }
   switch (status) {
@@ -45,7 +45,7 @@ const recordingMap = csv.input(callRecordingLog, { bom: true }).reduce((map, log
 const twilioLogs = csv.input(callLog).map(log => {
   const recording = recordingMap[log.Sid];
   const convertedData = {
-    タイプ: log.Direction === 'Inbound' ? '録音' : '再生',
+    タイプ: log.Direction === 'Inbound' ? 'Twilioへ着信' : 'Twilioから発信',
     開始時間: formatDateTime(log.StartTime),
     終了時間: formatDateTime(log.EndTime),
     発信元: addresses[log.From],
