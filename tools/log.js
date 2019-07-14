@@ -12,7 +12,10 @@ const { formatIncompletePhoneNumber } = require('libphonenumber-js');
 const formatTel = e164Number => formatIncompletePhoneNumber(e164Number.replace('+81', '0'), 'JP');
 
 const addresses = require(`../assets-production/${process.env.ORGANIZATION}/addresses`);
+
+// 録音ログ ダウンロード元 https://jp.twilio.com/console/voice/recordings/recording-logs
 const callRecordingLog = __dirname + '/call-recording-log.csv';
+// 通話ログ ダウンロード元 https://jp.twilio.com/console/voice/calls/logs
 const callLog = __dirname + '/call-log.csv';
 const outputFile = __dirname + '/twilio-log.csv';
 
