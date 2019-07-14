@@ -5,9 +5,9 @@ exports.handler = function(context, event, callback) {
   };
   const twiml = new Twilio.twiml.VoiceResponse();
 
-  if (context.SAY_ALL_NAMES) {
-    // デバッグ用フラグ 全員の名前を音読させてチェックする
-    twiml.redirect('/say-all-names');
+  if (context.DEBUG) {
+    // デバッグモード（必要な時だけDEBUGフラグを立てる）
+    twiml.redirect('/debug');
     return callback(null, twiml);
   }
 
