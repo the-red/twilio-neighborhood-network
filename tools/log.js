@@ -6,7 +6,7 @@ const { format } = require('date-fns');
 const { convertToTimeZone } = require('date-fns-timezone');
 const timeZone = 'Asia/Tokyo';
 const dateTimeFormat = 'YYYY-MM-DD HH:mm:ss';
-const formatDateTime = dateTime => format(convertToTimeZone(new Date(dateTime), { timeZone }), dateTimeFormat);
+const formatDateTime = dateTime => format(convertToTimeZone(dateTime, { timeZone }), dateTimeFormat);
 
 const { formatIncompletePhoneNumber } = require('libphonenumber-js');
 const formatTel = e164Number => formatIncompletePhoneNumber(e164Number.replace('+81', '0'), 'JP');
