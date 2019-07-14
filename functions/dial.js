@@ -16,13 +16,17 @@ exports.handler = function(context, event, callback) {
       },
       (err, result) => {
         if (err) {
-          console.error(err);
+          console.log(err);
+          callback(err);
           return;
         }
         console.log('Created calls using callback');
         console.log(result.sid);
+
+        // 少し待機してから発信（うまく動いてない？）
+        twiml.pause({ length: 10 });
+        callback(null, twiml);
       }
     );
   });
-  callback(null, twiml);
 };
