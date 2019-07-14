@@ -4,5 +4,5 @@ logs
 assets/recorders.js
 assets/listeners.js
 assets-production/
-tools/*.csv
-tools/*.xlsx
+tools/**/*.csv
+tools/**/*.xlsx
