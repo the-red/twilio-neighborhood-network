@@ -1,2 +1,2 @@
 # twilio-neighborhood-network
-Twilio ご近所電話ネットワーク
+Twilio ご近所電話連絡網
