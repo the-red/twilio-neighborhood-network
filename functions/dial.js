@@ -3,7 +3,7 @@ exports.handler = async function(context, event, callback) {
   const client = context.getTwilioClient();
   const { Caller, RecordingUrl } = event;
 
-  const listeners = require(Runtime.getAssets()['listeners.js'].path);
+  const listeners = require(Runtime.getAssets()['/listeners.js'].path);
   const Recorder = encodeURIComponent(Caller);
 
   // 一斉配信前に3秒待つ（録音した人自身が一呼吸おけるように）

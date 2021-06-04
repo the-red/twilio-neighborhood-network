@@ -7,7 +7,7 @@ exports.handler = function(context, event, callback) {
   const { Recorder, RecordingUrl } = event;
 
   const organization = context.ORGANIZATION || '電話連絡網';
-  const recorders = require(Runtime.getAssets()['recorders.js'].path);
+  const recorders = require(Runtime.getAssets()['/recorders.js'].path);
   const name = recorders[Recorder];
 
   twiml.say(`こんにちは。${organization}、${name}からのお知らせです。`, opt);

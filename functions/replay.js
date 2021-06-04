@@ -12,7 +12,7 @@ exports.handler = async function(context, event, callback) {
   const recordingCall = await client.calls(recording.callSid).fetch();
   const Recorder = recordingCall.from;
 
-  const recorders = require(Runtime.getAssets()['recorders.js'].path);
+  const recorders = require(Runtime.getAssets()['/recorders.js'].path);
   const name = recorders[Recorder];
 
   const { format } = require('date-fns');
