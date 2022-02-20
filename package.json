@@ -23,7 +23,7 @@
     "twilio": "^3.56"
   },
   "devDependencies": {
-    "prettier": "^1.16.4",
+    "prettier": "^2.5.1",
     "twilio-run": "^3.4.1"
   },
   "engines": {
