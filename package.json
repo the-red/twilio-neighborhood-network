@@ -27,6 +27,9 @@
     "prettier": "^2.5.1",
     "twilio-run": "^3.4.1"
   },
+  "resolutions": {
+    "ansi-regex": "^5.0.1"
+  },
   "engines": {
     "node": "14"
   }
