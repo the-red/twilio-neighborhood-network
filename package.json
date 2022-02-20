@@ -7,7 +7,7 @@
     "start": "npm run tunnel & npm run twilio",
     "s": "npm start",
     "twilio": "twilio-run --env --port=${TWILIO_PORT:-3000}",
-    "tunnel": "/usr/local/bin/ngrok http ${TWILIO_PORT:-3000}",
+    "tunnel": "lt --subdomain=${LOCALTUNNEL_SUBDOMAIN} --port=${TWILIO_PORT:-3000}",
     "log": "node tools/log"
   },
   "author": "",
@@ -23,6 +23,7 @@
     "twilio": "^3.56"
   },
   "devDependencies": {
+    "localtunnel": "^2.0.2",
     "prettier": "^2.5.1",
     "twilio-run": "^3.4.1"
   },
