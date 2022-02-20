@@ -1,4 +1,4 @@
-exports.handler = function(context, event, callback) {
+exports.handler = function (context, event, callback) {
   const opt = {
     language: 'ja-jp',
     voice: 'Polly.Mizuki',
