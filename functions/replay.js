@@ -1,4 +1,4 @@
-exports.handler = async function(context, event, callback) {
+exports.handler = async function (context, event, callback) {
   const opt = {
     language: 'ja-JP',
     voice: 'Polly.Mizuki',
@@ -7,12 +7,12 @@ exports.handler = async function(context, event, callback) {
   const client = context.getTwilioClient();
 
   // TODO: 最新3件くらいは聞けるようにしたい
-  const recording = await client.recordings.list({ limit: 1 }).then(_ => _[0]);
+  const recording = await client.recordings.list({ limit: 1 }).then((_) => _[0]);
   const RecordingUrl = `https://api.twilio.com/2010-04-01/Accounts/${context.ACCOUNT_SID}/Recordings/${recording.sid}`;
   const recordingCall = await client.calls(recording.callSid).fetch();
   const Recorder = recordingCall.from;
 
-  const recorders = require(Runtime.getAssets()['recorders.js'].path);
+  const recorders = require(Runtime.getAssets()['/recorders.js'].path);
   const name = recorders[Recorder];
 
   const { format } = require('date-fns');

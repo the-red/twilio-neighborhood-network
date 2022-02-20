@@ -6,10 +6,10 @@ const { format } = require('date-fns');
 const { convertToTimeZone } = require('date-fns-timezone');
 const timeZone = 'Asia/Tokyo';
 const dateTimeFormat = 'YYYY-MM-DD HH:mm:ss';
-const formatDateTime = dateTime => format(convertToTimeZone(dateTime, { timeZone }), dateTimeFormat);
+const formatDateTime = (dateTime) => format(convertToTimeZone(dateTime, { timeZone }), dateTimeFormat);
 
 const { formatIncompletePhoneNumber } = require('libphonenumber-js');
-const formatTel = e164Number => formatIncompletePhoneNumber(e164Number.replace('+81', '0'), 'JP');
+const formatTel = (e164Number) => formatIncompletePhoneNumber(e164Number.replace('+81', '0'), 'JP');
 
 const addresses = require(`../assets-production/${process.env.ORGANIZATION}/addresses`);
 
@@ -46,7 +46,7 @@ const recordingMap = csv.input(callRecordingLog, { bom: true }).reduce((map, log
   return map;
 }, {});
 
-const twilioLogs = csv.input(callLog).map(log => {
+const twilioLogs = csv.input(callLog).map((log) => {
   const recording = recordingMap[log.Sid];
   const convertedData = {
     タイプ: log.Direction === 'Inbound' ? 'Twilioへ着信' : 'Twilioから発信',

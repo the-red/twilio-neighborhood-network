@@ -1,11 +1,11 @@
-exports.handler = function(context, event, callback) {
+exports.handler = function (context, event, callback) {
   const opt = {
     language: 'ja-JP',
     voice: 'Polly.Mizuki',
   };
   const twiml = new Twilio.twiml.VoiceResponse();
 
-  const recorders = require(Runtime.getAssets()['recorders.js'].path);
+  const recorders = require(Runtime.getAssets()['/recorders.js'].path);
 
   if (event.Digits === '1') {
     twiml.redirect('/replay');

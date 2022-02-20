@@ -1,27 +1,33 @@
 {
   "name": "twilio-neighborhood-network",
   "version": "0.1.0",
-  "description": "Twilio ご近所電話ネットワーク",
+  "description": "Twilio ご近所電話連絡網",
   "main": "index.js",
   "scripts": {
     "start": "npm run tunnel & npm run twilio",
     "s": "npm start",
     "twilio": "twilio-run --env --port=${TWILIO_PORT:-3000}",
-    "tunnel": "ssh -R ${SERVEO_SUBDOMAIN}${SERVEO_SUBDOMAIN:+:}80:localhost:${TWILIO_PORT:-3000} serveo.net",
+    "tunnel": "lt --subdomain=${LOCALTUNNEL_SUBDOMAIN} --port=${TWILIO_PORT:-3000}",
     "log": "node tools/log"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "csv-parse": "^4.4.6",
-    "csv-stringify": "^5.3.0",
+    "@twilio/runtime-handler": "1.2.2",
+    "csv-parse": "^5.0.4",
+    "csv-stringify": "^6.0.5",
     "date-fns": "^1.30.1",
     "date-fns-timezone": "^0.1.4",
-    "dotenv": "^8.0.0",
-    "libphonenumber-js": "^1.7.18"
+    "dotenv": "^16.0.0",
+    "libphonenumber-js": "^1.7.18",
+    "twilio": "^3.56"
   },
   "devDependencies": {
-    "prettier": "^1.16.4",
-    "twilio-run": "^1.0.1"
+    "localtunnel": "^2.0.2",
+    "prettier": "^2.5.1",
+    "twilio-run": "^3.4.1"
+  },
+  "engines": {
+    "node": "14"
   }
 }

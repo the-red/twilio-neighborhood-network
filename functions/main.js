@@ -1,4 +1,4 @@
-exports.handler = function(context, event, callback) {
+exports.handler = function (context, event, callback) {
   const opt = {
     language: 'ja-JP',
     voice: 'Polly.Mizuki',
@@ -11,8 +11,8 @@ exports.handler = function(context, event, callback) {
     return callback(null, twiml);
   }
 
-  const recorders = require(Runtime.getAssets()['recorders.js'].path);
-  const listeners = require(Runtime.getAssets()['listeners.js'].path);
+  const recorders = require(Runtime.getAssets()['/recorders.js'].path);
+  const listeners = require(Runtime.getAssets()['/listeners.js'].path);
 
   console.log(event);
 

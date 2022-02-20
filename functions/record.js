@@ -1,11 +1,11 @@
-exports.handler = function(context, event, callback) {
+exports.handler = function (context, event, callback) {
   const opt = {
     language: 'ja-JP',
     voice: 'Polly.Mizuki',
   };
   const twiml = new Twilio.twiml.VoiceResponse();
 
-  const listeners = require(Runtime.getAssets()['listeners.js'].path);
+  const listeners = require(Runtime.getAssets()['/listeners.js'].path);
   const listenersCount = Object.keys(listeners).length;
 
   const maxLength = context.MAX_RECORDING_LENGTH || 50;
