@@ -3,6 +3,7 @@ assets/*.private.*
 assets-production/
 tools/**/*.csv
 tools/**/*.xlsx
+.DS_Store
 
 # Twilio Serverless
 .twiliodeployinfo
