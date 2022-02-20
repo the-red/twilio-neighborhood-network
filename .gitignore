@@ -1,8 +1,7 @@
 .env
 node_modules
 logs
-assets/recorders.js
-assets/listeners.js
+assets/*.private.*
 assets-production/
 tools/**/*.csv
 tools/**/*.xlsx
