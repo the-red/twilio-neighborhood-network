@@ -5,13 +5,13 @@ exports.handler = function (context, event, callback) {
   };
   const twiml = new Twilio.twiml.VoiceResponse();
 
-  const recorders = require(Runtime.getAssets()['/recorders.js'].path);
-  const recordersCount = Object.keys(recorders).length;
+  const members = require(Runtime.getAssets()['/recorders.js'].path);
+  const membersCount = Object.keys(members).length;
 
-  twiml.say(`関係者${recordersCount}人の、発音チェックを行います。`, opt);
+  twiml.say(`関係者${membersCount}人の、発音チェックを行います。`, opt);
   twiml.pause();
 
-  Object.values(recorders).forEach((name) => {
+  Object.values(members).forEach((name) => {
     twiml.say(`${name}からのお知らせです。`, opt);
     twiml.pause();
   });
